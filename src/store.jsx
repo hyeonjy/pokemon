@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import toDoReducer from "./reducer.js";
+import myPokemonReducer from "./reducer.js";
 
-const store = configureStore({ reducer: toDoReducer });
+const store = configureStore({ reducer: myPokemonReducer });
 
 export default store;
