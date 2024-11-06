@@ -54,7 +54,6 @@ const PokeImg = styled.img`
 
 const Dashboard = () => {
   const myPokemon = useSelector((state) => state.myPokemon);
-  console.log("dash mypoke: ", myPokemon);
 
   const displayPokemons = () => {
     const pokemons = [...myPokemon];

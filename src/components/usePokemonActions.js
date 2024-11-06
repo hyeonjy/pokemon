@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import MOCK_DATA from "../MOCK_DATA";
 import { add, remove } from "../reducer";
+import { toast } from "react-toastify";
 
 export const usePokemonActions = () => {
   const dispatch = useDispatch();
@@ -11,15 +12,14 @@ export const usePokemonActions = () => {
 
     const isIncluded = myPokemon.some((pokemon) => pokemon.id === +id);
     if (isIncluded) {
-      alert("이미 추가된 포켓몬입니다!");
+      toast.success("이미 추가된 포켓몬입니다!");
       return;
     }
     if (myPokemon.length < 6) {
       const newPokemon = MOCK_DATA.find((list) => list.id === +id);
-      console.log("new: ", newPokemon);
       dispatch(add(newPokemon));
     } else {
-      alert("6개까지만 가능!");
+      toast.success("6개까지만 가능!");
     }
   };
 
