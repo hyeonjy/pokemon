@@ -14,17 +14,12 @@ const Container = styled.div`
   border-radius: 10px;
 `;
 
-const PokemonList = ({ myPokemon, setMyPokemon }) => {
+const PokemonList = () => {
   return (
     <Container>
       {MOCK_DATA.map((card) => (
         <Link to={`/pokemon/${card.id}`} key={card.id}>
-          <PokemonCard
-            card={card}
-            toggle={true}
-            myPokemon={myPokemon}
-            setMyPokemon={setMyPokemon}
-          />
+          <PokemonCard card={card} toggle={true} />
         </Link>
       ))}
     </Container>

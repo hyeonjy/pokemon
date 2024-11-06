@@ -10,12 +10,10 @@ const Container = styled.div`
 `;
 
 const Dex = () => {
-  const [myPokemon, setMyPokemon] = useState([]);
-
   return (
     <Container>
-      <Dashboard myPokemon={myPokemon} setMyPokemon={setMyPokemon} />
-      <PokemonList myPokemon={myPokemon} setMyPokemon={setMyPokemon} />
+      <Dashboard />
+      <PokemonList />
     </Container>
   );
 };

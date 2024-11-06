@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import MOCK_DATA from "../MOCK_DATA";
+import { useDispatch, useSelector } from "react-redux";
+import { add, remove } from "../reducer";
 
 const Container = styled.div`
   border: 1px solid rgb(221, 221, 221);
@@ -52,7 +54,10 @@ const AddBtn = styled.button`
   border-radius: 5px;
 `;
 
-const PokemonCard = ({ toggle, card, myPokemon, setMyPokemon }) => {
+const PokemonCard = ({ toggle, card }) => {
+  const myPokemon = useSelector((state) => state.myPokemon);
+  const dispatch = useDispatch();
+
   const handleAdd = (e) => {
     e.preventDefault();
 
@@ -64,7 +69,7 @@ const PokemonCard = ({ toggle, card, myPokemon, setMyPokemon }) => {
 
     if (myPokemon.length < 6) {
       const newPokemon = MOCK_DATA.find((list) => list.id === card.id);
-      setMyPokemon((prev) => [...prev, newPokemon]);
+      dispatch(add(newPokemon));
     } else {
       alert("6개까지만 가능!");
     }
@@ -72,7 +77,7 @@ const PokemonCard = ({ toggle, card, myPokemon, setMyPokemon }) => {
 
   const handleDelete = (e) => {
     e.preventDefault();
-    setMyPokemon(myPokemon.filter((list) => list.id !== card.id));
+    dispatch(remove(card.id));
   };
 
   return (
