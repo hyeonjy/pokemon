@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import MOCK_DATA from "../MOCK_DATA";
 import styled from "styled-components";
-import { AddBtn } from "../components/PokemonCard";
+import { ActionBtn } from "../components/PokemonCard";
 import { usePokemonActions } from "../components/usePokemonActions";
 
 const Container = styled.div`
@@ -63,7 +63,7 @@ const BackBtn = styled.button`
   }
 `;
 
-const CustomAddBtn = styled(AddBtn)`
+const CustomAddBtn = styled(ActionBtn)`
   margin-top: 20px;
   padding: 10px 20px;
   font-size: 16px;
@@ -88,12 +88,15 @@ const PokemonDetail = () => {
 
   return (
     <>
+      {/* 데이터가 있을때 포켓몬 디테일 페이지가 보이도록 */}
       {data && (
         <Container>
           <PokeImg src={data.img_url} />
           <PokeName>{data.korean_name}</PokeName>
           <PokeDetail>타입: {data.types.join(", ")}</PokeDetail>
           <PokeDetail>{data.description}</PokeDetail>
+
+          {/* 뒤로가기 버튼과 추가 버튼 */}
           <BtnWrap>
             <BackBtn onClick={goBack}>뒤로 가기</BackBtn>
             <CustomAddBtn onClick={(e) => handleAdd(e, id)}>추가</CustomAddBtn>

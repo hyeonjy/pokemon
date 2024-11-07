@@ -41,7 +41,7 @@ const PokeId = styled.p`
   margin: 15px 0;
 `;
 
-export const AddBtn = styled.button`
+export const ActionBtn = styled.button`
   margin-top: 10px;
   padding: 5px 10px;
   font-size: 12px;
@@ -65,13 +65,15 @@ const PokemonCard = ({ toggle, card }) => {
         <PokeName>{card.korean_name}</PokeName>
         <PokeId>NO. {card.id.toString().padStart(3, "0")}</PokeId>
       </InfoWrap>
-      <AddBtn
+
+      {/* toggle 값에 따라 포켓몬을 추가하거나 삭제하는 액션을 수행 */}
+      <ActionBtn
         onClick={(e) =>
           toggle ? handleAdd(e, card.id) : handleDelete(e, card.id)
         }
       >
         {toggle ? "추가" : "삭제"}
-      </AddBtn>
+      </ActionBtn>
     </Container>
   );
 };
