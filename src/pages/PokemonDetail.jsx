@@ -71,6 +71,7 @@ const PokemonDetail = () => {
 
   return (
     <>
+      {/* 데이터가 있을때 포켓몬 디테일 페이지가 보이도록 */}
       {data && (
         <Container>
           <PokeImg src={data.img_url} />
