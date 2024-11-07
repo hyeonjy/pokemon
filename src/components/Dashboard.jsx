@@ -59,7 +59,7 @@ const Dashboard = () => {
     const pokemons = [...myPokemon];
 
     while (pokemons.length < 6) {
-      pokemons.push({ id: null, name: null });
+      pokemons.push({ id: null });
     }
     return pokemons;
   };
