@@ -10,7 +10,10 @@ const Container = styled.div`
 `;
 
 const Dex = () => {
-  const [myPokemon, setMyPokemon] = useState([]);
+  const [myPokemon, setMyPokemon] = useState(() => {
+    const savedMyPokemon = localStorage.getItem("MyPokemon");
+    return savedMyPokemon ? JSON.parse(savedMyPokemon) : [];
+  });
 
   return (
     <Container>

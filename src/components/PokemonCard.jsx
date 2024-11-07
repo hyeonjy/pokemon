@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import MOCK_DATA from "../MOCK_DATA";
 import { toast } from "react-toastify";
@@ -42,7 +42,7 @@ const PokeId = styled.p`
   margin: 15px 0;
 `;
 
-const AddBtn = styled.button`
+const ActionBtn = styled.button`
   margin-top: 10px;
   padding: 5px 10px;
   font-size: 12px;
@@ -54,6 +54,10 @@ const AddBtn = styled.button`
 `;
 
 const PokemonCard = ({ toggle, card, myPokemon, setMyPokemon }) => {
+  useEffect(() => {
+    localStorage.setItem("MyPokemon", JSON.stringify(myPokemon));
+  }, [myPokemon]);
+
   const handleAdd = (e) => {
     e.preventDefault();
 
@@ -83,9 +87,9 @@ const PokemonCard = ({ toggle, card, myPokemon, setMyPokemon }) => {
         <PokeName>{card.korean_name}</PokeName>
         <PokeId>NO. {card.id.toString().padStart(3, "0")}</PokeId>
       </InfoWrap>
-      <AddBtn onClick={toggle ? handleAdd : handleDelete}>
+      <ActionBtn onClick={toggle ? handleAdd : handleDelete}>
         {toggle ? "추가" : "삭제"}
-      </AddBtn>
+      </ActionBtn>
     </Container>
   );
 };
