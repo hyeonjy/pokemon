@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import MOCK_DATA from "../MOCK_DATA";
+import { toast } from "react-toastify";
 
 const Container = styled.div`
   border: 1px solid rgb(221, 221, 221);
@@ -58,7 +59,7 @@ const PokemonCard = ({ toggle, card, myPokemon, setMyPokemon }) => {
 
     const isIncluded = myPokemon.some((pokemon) => pokemon.id === card.id);
     if (isIncluded) {
-      alert("이미 추가된 포켓몬입니다!");
+      toast.success("이미 추가된 포켓몬입니다!");
       return;
     }
 
@@ -66,7 +67,7 @@ const PokemonCard = ({ toggle, card, myPokemon, setMyPokemon }) => {
       const newPokemon = MOCK_DATA.find((list) => list.id === card.id);
       setMyPokemon((prev) => [...prev, newPokemon]);
     } else {
-      alert("6개까지만 가능!");
+      toast.success("6개까지만 가능!");
     }
   };
 
