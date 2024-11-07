@@ -17,6 +17,7 @@ const Container = styled.div`
 const PokemonList = () => {
   return (
     <Container>
+      {/* MOCK_DATA 배열을 순회하여 각 포켓몬 카드를 생성 */}
       {MOCK_DATA.map((card) => (
         <Link to={`/pokemon/${card.id}`} key={card.id}>
           <PokemonCard card={card} toggle={true} />

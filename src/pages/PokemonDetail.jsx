@@ -82,18 +82,22 @@ const PokemonDetail = () => {
     setData(MOCK_DATA.filter((pokemon) => pokemon.id === +id)[0]);
   }, [id]);
 
+  // 뒤로 가기
   const goBack = () => {
     navigate(-1);
   };
 
   return (
     <>
+      {/* 데이터가 있을때 포켓몬 디테일 페이지가 보이도록 */}
       {data && (
         <Container>
           <PokeImg src={data.img_url} />
           <PokeName>{data.korean_name}</PokeName>
           <PokeDetail>타입: {data.types.join(", ")}</PokeDetail>
           <PokeDetail>{data.description}</PokeDetail>
+
+          {/* 뒤로가기 버튼과 추가 버튼 */}
           <BtnWrap>
             <BackBtn onClick={goBack}>뒤로 가기</BackBtn>
             <CustomAddBtn

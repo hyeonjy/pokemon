@@ -57,9 +57,10 @@ export const ActionBtn = styled.button`
 `;
 
 const PokemonCard = ({ toggle, card }) => {
-  const { myPokemon, setMyPokemon } = useContext(PokemonContext);
+  const { myPokemon } = useContext(PokemonContext);
   const { handleAdd, handleDelete } = usePokemonActions();
 
+  // myPokemon 값이 변경될 때마다 로컬 스토리지에 저장
   useEffect(() => {
     localStorage.setItem("MyPokemon", JSON.stringify(myPokemon));
   }, [myPokemon]);
@@ -71,6 +72,8 @@ const PokemonCard = ({ toggle, card }) => {
         <PokeName>{card.korean_name}</PokeName>
         <PokeId>NO. {card.id.toString().padStart(3, "0")}</PokeId>
       </InfoWrap>
+
+      {/* toggle 값에 따라 포켓몬을 추가하거나 삭제하는 액션을 수행 */}
       <ActionBtn
         onClick={(e) =>
           toggle ? handleAdd(e, card.id) : handleDelete(e, card.id)
