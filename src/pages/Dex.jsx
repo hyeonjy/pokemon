@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Dashboard from "../components/Dashboard";
 import PokemonList from "../components/PokemonList";
 import styled from "styled-components";
+import { PokemonContext } from "../context/PokemonContext";
 
 const Container = styled.div`
   display: flex;
@@ -17,8 +18,10 @@ const Dex = () => {
 
   return (
     <Container>
-      <Dashboard myPokemon={myPokemon} setMyPokemon={setMyPokemon} />
-      <PokemonList myPokemon={myPokemon} setMyPokemon={setMyPokemon} />
+      <PokemonContext.Provider value={{ myPokemon, setMyPokemon }}>
+        <Dashboard />
+        <PokemonList />
+      </PokemonContext.Provider>
     </Container>
   );
 };

@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
 import MOCK_DATA from "../MOCK_DATA";
 import { toast } from "react-toastify";
+import { PokemonContext } from "../context/PokemonContext";
 
 const Container = styled.div`
   border: 1px solid rgb(221, 221, 221);
@@ -53,7 +54,9 @@ const ActionBtn = styled.button`
   border-radius: 5px;
 `;
 
-const PokemonCard = ({ toggle, card, myPokemon, setMyPokemon }) => {
+const PokemonCard = ({ toggle, card }) => {
+  const { myPokemon, setMyPokemon } = useContext(PokemonContext);
+
   useEffect(() => {
     localStorage.setItem("MyPokemon", JSON.stringify(myPokemon));
   }, [myPokemon]);

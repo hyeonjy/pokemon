@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import pokeball from "../img/pokeball.png";
 import PokemonCard from "./PokemonCard";
 import { Link } from "react-router-dom";
+import { PokemonContext } from "../context/PokemonContext";
 
 const Container = styled.div`
   display: flex;
@@ -51,7 +52,9 @@ const PokeImg = styled.img`
   height: 50px;
 `;
 
-const Dashboard = ({ myPokemon, setMyPokemon }) => {
+const Dashboard = () => {
+  const { myPokemon } = useContext(PokemonContext);
+
   const displayPokemons = () => {
     const pokemons = [...myPokemon];
 
@@ -73,12 +76,7 @@ const Dashboard = ({ myPokemon, setMyPokemon }) => {
               </ImgWrap>
             ) : (
               <Link to={`/pokemon/${card.id}`} key={card.id}>
-                <PokemonCard
-                  card={card}
-                  toggle={false}
-                  myPokemon={myPokemon}
-                  setMyPokemon={setMyPokemon}
-                />
+                <PokemonCard card={card} toggle={false} />
               </Link>
             )}
           </div>
