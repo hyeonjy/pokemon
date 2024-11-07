@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import MOCK_DATA from "../MOCK_DATA";
 import styled from "styled-components";
+import { usePokemonActions } from "../components/usePokemonActions";
+import { ActionBtn } from "../components/PokemonCard";
 
 const Container = styled.div`
   display: flex;
@@ -42,8 +44,13 @@ const PokeDetail = styled.p`
   font-weight: 400;
 `;
 
+const BtnWrap = styled.div`
+  width: 250px;
+`;
+
 const BackBtn = styled.button`
   margin-top: 20px;
+  margin-right: 30px;
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
@@ -56,10 +63,20 @@ const BackBtn = styled.button`
   }
 `;
 
+const CustomAddBtn = styled(ActionBtn)`
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  width: 100px;
+  height: 43px;
+  border-radius: 8px;
+`;
+
 const PokemonDetail = () => {
   const { id } = useParams();
   const [data, setData] = useState(null);
   const navigate = useNavigate();
+  const { handleAdd } = usePokemonActions();
 
   useEffect(() => {
     setData(MOCK_DATA.filter((pokemon) => pokemon.id === +id)[0]);
@@ -77,7 +94,16 @@ const PokemonDetail = () => {
           <PokeName>{data.korean_name}</PokeName>
           <PokeDetail>타입: {data.types.join(", ")}</PokeDetail>
           <PokeDetail>{data.description}</PokeDetail>
-          <BackBtn onClick={goBack}>뒤로 가기</BackBtn>
+          <BtnWrap>
+            <BackBtn onClick={goBack}>뒤로 가기</BackBtn>
+            <CustomAddBtn
+              onClick={(e) => {
+                handleAdd(e, id);
+              }}
+            >
+              추가
+            </CustomAddBtn>
+          </BtnWrap>
         </Container>
       )}
     </>

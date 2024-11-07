@@ -1,8 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
-import MOCK_DATA from "../MOCK_DATA";
-import { toast } from "react-toastify";
 import { PokemonContext } from "../context/PokemonContext";
+import { usePokemonActions } from "./usePokemonActions";
 
 const Container = styled.div`
   border: 1px solid rgb(221, 221, 221);
@@ -43,7 +42,7 @@ const PokeId = styled.p`
   margin: 15px 0;
 `;
 
-const ActionBtn = styled.button`
+export const ActionBtn = styled.button`
   margin-top: 10px;
   padding: 5px 10px;
   font-size: 12px;
@@ -52,36 +51,18 @@ const ActionBtn = styled.button`
   background-color: rgb(255, 0, 0);
   color: rgb(255, 255, 255);
   border-radius: 5px;
+  &:hover {
+    background-color: rgb(204, 0, 0);
+  }
 `;
 
 const PokemonCard = ({ toggle, card }) => {
   const { myPokemon, setMyPokemon } = useContext(PokemonContext);
+  const { handleAdd, handleDelete } = usePokemonActions();
 
   useEffect(() => {
     localStorage.setItem("MyPokemon", JSON.stringify(myPokemon));
   }, [myPokemon]);
-
-  const handleAdd = (e) => {
-    e.preventDefault();
-
-    const isIncluded = myPokemon.some((pokemon) => pokemon.id === card.id);
-    if (isIncluded) {
-      toast.success("이미 추가된 포켓몬입니다!");
-      return;
-    }
-
-    if (myPokemon.length < 6) {
-      const newPokemon = MOCK_DATA.find((list) => list.id === card.id);
-      setMyPokemon((prev) => [...prev, newPokemon]);
-    } else {
-      toast.success("6개까지만 가능!");
-    }
-  };
-
-  const handleDelete = (e) => {
-    e.preventDefault();
-    setMyPokemon(myPokemon.filter((list) => list.id !== card.id));
-  };
 
   return (
     <Container>
@@ -90,7 +71,11 @@ const PokemonCard = ({ toggle, card }) => {
         <PokeName>{card.korean_name}</PokeName>
         <PokeId>NO. {card.id.toString().padStart(3, "0")}</PokeId>
       </InfoWrap>
-      <ActionBtn onClick={toggle ? handleAdd : handleDelete}>
+      <ActionBtn
+        onClick={(e) =>
+          toggle ? handleAdd(e, card.id) : handleDelete(e, card.id)
+        }
+      >
         {toggle ? "추가" : "삭제"}
       </ActionBtn>
     </Container>

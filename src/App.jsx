@@ -2,6 +2,8 @@ import { createGlobalStyle } from "styled-components";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Router from "./Router";
+import { useState } from "react";
+import { PokemonContext } from "./context/PokemonContext";
 
 const GlobalStyle = createGlobalStyle`
 html, body, div, span, applet, object, iframe,
@@ -63,10 +65,17 @@ a {
 `;
 
 function App() {
+  const [myPokemon, setMyPokemon] = useState(() => {
+    const savedMyPokemon = localStorage.getItem("MyPokemon");
+    return savedMyPokemon ? JSON.parse(savedMyPokemon) : [];
+  });
+
   return (
     <>
       <GlobalStyle />
-      <Router />
+      <PokemonContext.Provider value={{ myPokemon, setMyPokemon }}>
+        <Router />
+      </PokemonContext.Provider>
       <ToastContainer
         position="top-right"
         autoClose={3000}
