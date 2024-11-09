@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import MOCK_DATA from "../MOCK_DATA";
+import MOCK_DATA from "../data/MOCK_DATA";
 import styled from "styled-components";
 import { ActionBtn } from "../components/PokemonCard";
 import { usePokemonActions } from "../components/usePokemonActions";
+import { useSelector } from "react-redux";
 
 const Container = styled.div`
   display: flex;
@@ -63,7 +64,7 @@ const BackBtn = styled.button`
   }
 `;
 
-const CustomAddBtn = styled(ActionBtn)`
+const StyledActionBtn = styled(ActionBtn)`
   margin-top: 20px;
   padding: 10px 20px;
   font-size: 16px;
@@ -74,13 +75,24 @@ const CustomAddBtn = styled(ActionBtn)`
 
 const PokemonDetail = () => {
   const { id } = useParams();
-  const [data, setData] = useState(null);
+  const [data, setData] = useState(null); //id에 해당하는 포켓몬 데이터
+  const [toggle, setToggle] = useState(false); //추가, 삭제 버튼을 위한 토글
+  const myPokemon = useSelector((state) => state.myPokemon);
   const navigate = useNavigate();
-  const { handleAdd } = usePokemonActions();
+  const { handleAdd, handleDelete } = usePokemonActions();
 
   useEffect(() => {
     setData(MOCK_DATA.filter((pokemon) => pokemon.id === +id)[0]);
-  }, [id]);
+    setToggle(myPokemon.some((pokemon) => pokemon.id === +id));
+  }, [id, myPokemon]);
+
+  const handleBtnClick = (e) => {
+    if (toggle) {
+      handleDelete(e, +id);
+    } else {
+      handleAdd(e, +id);
+    }
+  };
 
   const goBack = () => {
     navigate(-1);
@@ -99,7 +111,9 @@ const PokemonDetail = () => {
           {/* 뒤로가기 버튼과 추가 버튼 */}
           <BtnWrap>
             <BackBtn onClick={goBack}>뒤로 가기</BackBtn>
-            <CustomAddBtn onClick={(e) => handleAdd(e, id)}>추가</CustomAddBtn>
+            <StyledActionBtn onClick={handleBtnClick}>
+              {toggle ? "삭제" : "추가"}
+            </StyledActionBtn>
           </BtnWrap>
         </Container>
       )}

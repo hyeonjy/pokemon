@@ -67,17 +67,7 @@ function App() {
     <>
       <GlobalStyle />
       <Router />
-      <ToastContainer
-        position="top-right"
-        autoClose={3000}
-        hideProgressBar={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
+      <ToastContainer autoClose={3000} />
     </>
   );
 }
