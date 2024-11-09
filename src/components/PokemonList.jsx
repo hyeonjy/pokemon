@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import MOCK_DATA from "../MOCK_DATA";
+import MOCK_DATA from "../data/MOCK_DATA";
 import PokemonCard from "./PokemonCard";
 import { Link } from "react-router-dom";
 

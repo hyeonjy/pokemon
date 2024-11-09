@@ -1,4 +1,4 @@
-import MOCK_DATA from "../MOCK_DATA";
+import MOCK_DATA from "../data/MOCK_DATA";
 import { toast } from "react-toastify";
 import { PokemonContext } from "../context/PokemonContext";
 import { useContext } from "react";
@@ -20,7 +20,12 @@ export const usePokemonActions = () => {
     // 포켓몬 카드 개수가 6개 이하인지 확인
     if (myPokemon.length < 6) {
       const newPokemon = MOCK_DATA.find((list) => list.id === +id);
-      setMyPokemon((prev) => [...prev, newPokemon]);
+      setMyPokemon((prev) => {
+        const updatedPokemons = [...prev, newPokemon];
+
+        localStorage.setItem("MyPokemon", JSON.stringify(updatedPokemons));
+        return updatedPokemons;
+      });
     } else {
       toast.success("6개까지만 가능!");
     }
@@ -29,7 +34,13 @@ export const usePokemonActions = () => {
   // 나만의 포켓몬 카드 삭제
   const handleDelete = (e, id) => {
     e.preventDefault();
-    setMyPokemon(myPokemon.filter((list) => list.id !== +id));
+
+    setMyPokemon((prev) => {
+      const updatedPokemons = prev.filter((list) => list.id !== +id);
+
+      localStorage.setItem("MyPokemon", JSON.stringify(updatedPokemons));
+      return updatedPokemons;
+    });
   };
 
   return { handleAdd, handleDelete };

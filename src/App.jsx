@@ -65,6 +65,7 @@ a {
 `;
 
 function App() {
+  // localStorage에 저장된 데이터가 있을 경우 나만의 포켓몬을 불러오고, 없으면 빈 배열로
   const [myPokemon, setMyPokemon] = useState(() => {
     const savedMyPokemon = localStorage.getItem("MyPokemon");
     return savedMyPokemon ? JSON.parse(savedMyPokemon) : [];
@@ -76,17 +77,7 @@ function App() {
       <PokemonContext.Provider value={{ myPokemon, setMyPokemon }}>
         <Router />
       </PokemonContext.Provider>
-      <ToastContainer
-        position="top-right"
-        autoClose={3000}
-        hideProgressBar={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
+      <ToastContainer autoClose={3000} />
     </>
   );
 }

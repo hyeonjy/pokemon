@@ -1,6 +1,5 @@
-import React, { useContext, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
-import { PokemonContext } from "../context/PokemonContext";
 import { usePokemonActions } from "./usePokemonActions";
 
 const Container = styled.div`
@@ -57,13 +56,7 @@ export const ActionBtn = styled.button`
 `;
 
 const PokemonCard = ({ toggle, card }) => {
-  const { myPokemon } = useContext(PokemonContext);
   const { handleAdd, handleDelete } = usePokemonActions();
-
-  // myPokemon 값이 변경될 때마다 로컬 스토리지에 저장
-  useEffect(() => {
-    localStorage.setItem("MyPokemon", JSON.stringify(myPokemon));
-  }, [myPokemon]);
 
   return (
     <Container>
