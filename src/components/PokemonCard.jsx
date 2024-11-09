@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
-import MOCK_DATA from "../MOCK_DATA";
-import { toast } from "react-toastify";
+import { usePokemonActions } from "./usePokemonActions";
 
 const Container = styled.div`
   border: 1px solid rgb(221, 221, 221);
@@ -57,36 +56,10 @@ const ActionBtn = styled.button`
 `;
 
 const PokemonCard = ({ toggle, card, myPokemon, setMyPokemon }) => {
-  // myPokemon 값이 변경될 때마다 로컬 스토리지에 저장
-  useEffect(() => {
-    localStorage.setItem("MyPokemon", JSON.stringify(myPokemon));
-  }, [myPokemon]);
-
-  // 나만의 포켓몬 카드 추가
-  const handleAdd = (e) => {
-    e.preventDefault();
-
-    // 이미 추가된 포켓몬 인지 확인
-    const isIncluded = myPokemon.some((pokemon) => pokemon.id === card.id);
-    if (isIncluded) {
-      toast.success("이미 추가된 포켓몬입니다!");
-      return;
-    }
-
-    // 포켓몬 카드 개수가 6개 이하인지 확인
-    if (myPokemon.length < 6) {
-      const newPokemon = MOCK_DATA.find((list) => list.id === card.id);
-      setMyPokemon((prev) => [...prev, newPokemon]);
-    } else {
-      toast.success("6개까지만 가능!");
-    }
-  };
-
-  // 나만의 포켓몬 카드 삭제
-  const handleDelete = (e) => {
-    e.preventDefault();
-    setMyPokemon(myPokemon.filter((list) => list.id !== card.id));
-  };
+  const { handleAdd, handleDelete } = usePokemonActions({
+    myPokemon,
+    setMyPokemon,
+  });
 
   return (
     <Container>
@@ -97,7 +70,11 @@ const PokemonCard = ({ toggle, card, myPokemon, setMyPokemon }) => {
       </InfoWrap>
 
       {/* toggle 값에 따라 포켓몬을 추가하거나 삭제하는 액션을 수행 */}
-      <ActionBtn onClick={toggle ? handleAdd : handleDelete}>
+      <ActionBtn
+        onClick={(e) => {
+          toggle ? handleAdd(e, card.id) : handleDelete(e, card.id);
+        }}
+      >
         {toggle ? "추가" : "삭제"}
       </ActionBtn>
     </Container>

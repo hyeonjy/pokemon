@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import MOCK_DATA from "../MOCK_DATA";
+import MOCK_DATA from "../data/MOCK_DATA";
 import styled from "styled-components";
 
 const Container = styled.div`
