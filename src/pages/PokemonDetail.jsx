@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import MOCK_DATA from "../data/MOCK_DATA";
 import styled from "styled-components";
 import { ActionBtn } from "../components/PokemonCard";
-import { usePokemonActions } from "../components/usePokemonActions";
+import { usePokemonActions } from "../hooks/usePokemonActions";
 import { useSelector } from "react-redux";
 
 const Container = styled.div`
