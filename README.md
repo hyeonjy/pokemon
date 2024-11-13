@@ -1,8 +1,8 @@
 # 1️⃣ 프로젝트 소개
 ## Intro: 포켓몬 도감 만들기
-(1) 소개 : React의 상태 관리와 이벤트 핸들링을 활용하여, 포켓몬 정보를 다루는 작은 애플리케이션을 완성
-(2) 목적: React의 props drilling과 Context API, redux를 각 브랜치별로 적용하여 React-router-dom 을 활용한 라우팅 구현 방식을 경험
-(3) 개발기간 : 2024.11.06 ~ 2024.11.13
+(1) 소개 : React의 상태 관리와 이벤트 핸들링을 활용하여, 포켓몬 정보를 다루는 작은 애플리케이션을 완성 <br>
+(2) 목적: React의 props drilling과 Context API, redux를 각 브랜치별로 적용하여 React-router-dom 을 활용한 라우팅 구현 방식을 경험 <br>
+(3) 개발기간 : 2024.11.06 ~ 2024.11.13 <br>
 
 ## 사용스택
 <div style="display:flex">
