@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import MOCK_DATA from "../MOCK_DATA";
+import MOCK_DATA from "../data/MOCK_DATA";
 import { add, remove } from "../reducer";
 import { toast } from "react-toastify";
 
