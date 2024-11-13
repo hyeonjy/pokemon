@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
-import { usePokemonActions } from "./usePokemonActions";
+import { usePokemonActions } from "../hooks/usePokemonActions";
 
 const Container = styled.div`
   border: 1px solid rgb(221, 221, 221);
