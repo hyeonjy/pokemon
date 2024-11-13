@@ -2,8 +2,7 @@ import { createGlobalStyle } from "styled-components";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Router from "./Router";
-import { useState } from "react";
-import { PokemonContext } from "./context/PokemonContext";
+import { PokemonProvider } from "./context/PokemonContext";
 
 const GlobalStyle = createGlobalStyle`
 html, body, div, span, applet, object, iframe,
@@ -65,18 +64,12 @@ a {
 `;
 
 function App() {
-  // localStorage에 저장된 데이터가 있을 경우 나만의 포켓몬을 불러오고, 없으면 빈 배열로
-  const [myPokemon, setMyPokemon] = useState(() => {
-    const savedMyPokemon = localStorage.getItem("MyPokemon");
-    return savedMyPokemon ? JSON.parse(savedMyPokemon) : [];
-  });
-
   return (
     <>
       <GlobalStyle />
-      <PokemonContext.Provider value={{ myPokemon, setMyPokemon }}>
+      <PokemonProvider>
         <Router />
-      </PokemonContext.Provider>
+      </PokemonProvider>
       <ToastContainer autoClose={3000} />
     </>
   );

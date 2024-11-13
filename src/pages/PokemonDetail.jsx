@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import MOCK_DATA from "../data/MOCK_DATA";
 import styled from "styled-components";
-import { usePokemonActions } from "../components/usePokemonActions";
 import { ActionBtn } from "../components/PokemonCard";
 import { PokemonContext } from "../context/PokemonContext";
 
@@ -79,7 +78,7 @@ const PokemonDetail = () => {
   const [toggle, setToggle] = useState(false); //추가, 삭제 버튼을 위한 토글
   const { myPokemon } = useContext(PokemonContext);
   const navigate = useNavigate();
-  const { handleAdd, handleDelete } = usePokemonActions();
+  const { handleAdd, handleDelete } = useContext(PokemonContext);
 
   useEffect(() => {
     setData(MOCK_DATA.filter((pokemon) => pokemon.id === +id)[0]);

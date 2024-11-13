@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
-import { usePokemonActions } from "./usePokemonActions";
+import { PokemonContext } from "../context/PokemonContext";
 
 const Container = styled.div`
   border: 1px solid rgb(221, 221, 221);
@@ -56,7 +56,7 @@ export const ActionBtn = styled.button`
 `;
 
 const PokemonCard = ({ toggle, card }) => {
-  const { handleAdd, handleDelete } = usePokemonActions();
+  const { handleAdd, handleDelete } = useContext(PokemonContext);
 
   return (
     <Container>
