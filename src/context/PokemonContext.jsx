@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from "react";
-import { usePokemonActions } from "../components/usePokemonActions";
+import { usePokemonActions } from "../hooks/usePokemonActions";
 
 export const PokemonContext = createContext(null);
 
