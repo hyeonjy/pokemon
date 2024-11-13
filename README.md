@@ -14,14 +14,14 @@
 ## 배포
 [포켓몬 도감 링크](https://pokemon-eta-woad.vercel.app/)
 
-# 브랜치 소개 
+## 브랜치 소개 
 (1) **props-drilling**: 각 컴포넌트가 필요한 데이터를 **props로 전달**받아 사용하는 방식으로 상태를 관리 <br>
 (2) **context**: PokemonContext를 생성하여 (addPokemon, removePokemon)함수를 **Context API**로 관리하여 props drilling을 피하고, 포켓몬 컬렉션을 전역적으로 관리  <br>
 (3) **redux** : **Redux Toolki**t을 사용하여 상태 관리를 리팩토링하고 **redux-persist**를 적용하여 세션 전반에 걸쳐 상태 지속성을 유지  <br>
 
 <br>
 
-# 2. 구현기능
+# 2️⃣ 구현기능
 ## # 구현기능 요약
 특징
 - 생성, 읽기, 삭제로 포켓몬을 선택하고 관리합니다.
