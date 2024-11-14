@@ -21,7 +21,37 @@
 
 <br>
 
-# 2️⃣ 구현기능
+# 2️⃣ 프로젝트 구조
+* redux 브랜치
+```plaintext
+src
+│
+├── components
+│   ├── Dashboard         # 나만의 포켓몬을 표시하는 메인 대시보드 컴포넌트
+│   ├── PokemonCard       # 개별 포켓몬 카드를 나타내는 컴포넌트
+│   └── PokemonList       # 모든 포켓몬을 나열하는 컴포넌트
+│
+├── data
+│   └── MOCK_DATA.js      # 포켓몬에 대한 샘플 데이터를 포함한 파일
+│
+├── hooks
+│   └── usePokemonActions.js # 포켓몬 추가/삭제 액션을 처리하는 커스텀 훅
+│
+├── pages
+│   ├── Dex              # 포켓몬 대시보드와 리스트를 위한 컴포넌트
+│   ├── Home             # 홈 페이지, 앱의 시작 화면
+│   └── PokemonDetail    # 개별 포켓몬에 대한 상세 페이지
+│
+├── reducer.js           # 앱의 상태를 위한 루트 리듀서를 정의
+├── Router.jsx           # React-router-dom을 사용하여 다양한 앱 뷰에 대한 라우팅 설정
+├── store.jsx            # Redux 툴킷을 사용한 스토어 설정 및 redux-persist 통합
+└── App.jsx              
+└── main.jsx
+```
+
+<br/>
+
+# 3️⃣ 구현기능
 ## # 구현기능 요약
 특징
 - 생성, 읽기, 삭제로 포켓몬을 선택하고 관리합니다.
